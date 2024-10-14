@@ -1,0 +1,7 @@
+.vs
+.idea
+Project Backups/
+*.pdsbak
+*.workspace
+Debug/
+Release/
