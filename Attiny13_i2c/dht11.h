@@ -18,6 +18,6 @@
 
 uint8_t dht_start(void);
 uint8_t dht_byte(void);
-uint8_t dht_read(uint8_t *hum, uint8_t* temp);
+uint8_t dhtRead(uint8_t *hum, uint8_t* temp);
 
 #endif /* DHT11_H_ */

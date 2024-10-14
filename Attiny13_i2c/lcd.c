@@ -66,8 +66,8 @@ void sendByte(uint8_t data, uint8_t type){
 	
 	if (type){
 		//отправляем данные
-		sendToInterface((data&0xf4)|1<<RS|1<<BACK_LIGHT);
-		sendLowHalfByte(data<<4|1<<RS|1<<BACK_LIGHT);		
+		sendToInterface((data&0xf4)|1<<RS);
+		sendLowHalfByte(data<<4|1<<RS);		
 	}
 	else{
 		//отправляем команду
@@ -98,8 +98,8 @@ void cls(){
 }
 
 //Вывод цифр на экран(преобразование int в char)
-void n_to_str(uint8_t num){
-	char buf[3];
+void numToStr(uint8_t num){
+	char buf[2];
 	utoa(num, buf, 10);
 	lcdString(buf);
 }

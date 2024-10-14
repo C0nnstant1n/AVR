@@ -28,7 +28,7 @@ uint8_t dht_byte(void){
 }
 
 // общая функция опроса датчика
-uint8_t dht_read(uint8_t *hum, uint8_t *temp) {
+uint8_t dhtRead(uint8_t *hum, uint8_t *temp) {
 	uint8_t data[5];// массив под данные датчика
 	uint8_t error=dht_start();// стартуем и получаем код ошибки в переменную
 

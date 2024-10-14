@@ -24,13 +24,13 @@ int main(void)
 	lcdString("Temp");
 	while (1)
 	{
-		dht_read(&_hum, &_temp);
+		dhtRead(&_hum, &_temp);
 		setCursor(0, 12);
-		n_to_str(_temp);
+		numToStr(_temp);
 		sendByte('C', 1);
 		sendByte(0xdf, 1);
 		setCursor(1, 7);
-		n_to_str(_hum);	
+		numToStr(_hum);	
 		sendByte('%', 1);
 		_delay_ms(2000);
 		

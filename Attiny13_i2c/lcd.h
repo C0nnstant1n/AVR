@@ -26,6 +26,6 @@ void sendLowHalfByte(uint8_t d);
 void lcdString(char* str);
 void setCursor(uint8_t line, uint8_t pos);
 void cls(void);
-void n_to_str(uint8_t num);
+void numToStr(uint8_t num);
 
 #endif /* LCD_H_ */
