@@ -11,16 +11,16 @@
 void lcd_init(){
 	_delay_ms(100); // ждем 40 мс стабилизации питания
 	//init1
-		sendToInterface(3<<4);
+		sendToInterface(0x30);
 	_delay_ms(5);
 	//init2
-		sendToInterface(3<<4);
+		sendToInterface(0x30);
 	_delay_us(150);
 	//init3
-		sendToInterface(3<<4);
+		sendToInterface(0x30);
 	min_time_command; // минимальное время выполнения команды
 	//command
-		sendToInterface(2<<4);
+		sendToInterface(0x20);
 	min_time_command;
 	// команда Function Set 001_DL_N_F_X_X
 		sendByte(40, 0);
@@ -39,14 +39,15 @@ void lcd_init(){
 
 //Отправляем байт в I2C
 void sendToInterface(uint8_t d){
-		i2c_start();
-		i2c_send(LCD_ADR);
-		i2c_send(d|=(1<<2));
-		i2c_stop();
-		i2c_start();
-		i2c_send(LCD_ADR);
-		i2c_send(d&=~(1<<2));
-		i2c_stop();
+	d|=(1<<BACK_LIGHT);
+	i2c_start();
+	i2c_send(LCD_ADR);
+	i2c_send(d|=(1<<2));
+	i2c_stop();
+	i2c_start();
+	i2c_send(LCD_ADR);
+	i2c_send(d&=~(1<<2));
+	i2c_stop();
 }
 
 //Формируем старший полубайт
@@ -98,7 +99,7 @@ void cls(){
 
 //Вывод цифр на экран(преобразование int в char)
 void n_to_str(uint8_t num){
-	char buf[4];
+	char buf[3];
 	utoa(num, buf, 10);
 	lcdString(buf);
 }
