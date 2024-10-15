@@ -9,6 +9,7 @@
 
 #define P_LED PB4
 #define SLEEP PB1
+#define RESET PB5
 
 #include "i2c.h"
 #include "lcd.h"

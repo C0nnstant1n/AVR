@@ -39,7 +39,8 @@ void lcd_init(){
 
 //Отправляем байт в I2C
 void sendToInterface(uint8_t d){
-	d|=(1<<BACK_LIGHT);
+	if(PINB&(1<<SLEEP))d|=(0<<BACK_LIGHT);
+	else d|=(1<<BACK_LIGHT);
 	i2c_start();
 	i2c_send(LCD_ADR);
 	i2c_send(d|=(1<<2));
