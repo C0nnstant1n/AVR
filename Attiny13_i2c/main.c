@@ -3,6 +3,7 @@
 uint8_t _hum, _temp;// переменные для влажности и температуры
 
 	ISR(INT0_vect){
+		MCUCR&=~(1<<SE);
 		//выход из сна
 	}
 
@@ -26,19 +27,20 @@ int main(void)
 		sendByte('C', 1);
 		sendByte(0xdf, 1);
 		setCursor(1, 7);
-		numToStr(CLKPR);	
+		numToStr(_hum);	
 		sendByte('%', 1);
 				
 		//Если на пин1 1, отправляем в сон
 		if(PINB&(1<<SLEEP)){
 			// Разрешаем сон, конфигурируем прерывания по низкому уровню
-			MCUCR|=(0<<ISC01)|(0<<ISC00)|(1<<SE);
+			MCUCR|=(1<<SE|1<<SM1);
 			
 			//Разрешаем внешние прерывания
 			GIMSK|=(1<<INT0);
 			
 			//Выключаем экран
-			sendByte(8, 0);
+			//sendByte(8, 0);
+			PORTB&=~(1<<LED_INDICATOR);
 			asm("sleep");
 		}
 		_delay_ms(2000);
