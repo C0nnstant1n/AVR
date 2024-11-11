@@ -4,10 +4,11 @@
 //#define F_CPU 1200000UL //For Proteus
 #define F_CPU 9600000UL //For my real tiny13a
 #include <avr/io.h>
+#include <avr/sleep.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-#define LED_INDICATOR PB4
+#define RESET_COMMAND PB4
 #define SLEEP PB1
 #define RESET PB5
 
